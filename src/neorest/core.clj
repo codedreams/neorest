@@ -9,7 +9,8 @@
         {:keys [status body] :as req} (client/post href
                                                    {:body body
                                                     :accept :json
-                                                    :content-type :json})]
+                                                    :content-type :json
+                                                    :throw-entire-message? true})]
     (assoc (json/parse-string body true) :status status)))
 
 (defn create-index [params-map]
@@ -34,5 +35,4 @@
 
 (defn created? [result]
   (= (:status result) 201))
-
 
